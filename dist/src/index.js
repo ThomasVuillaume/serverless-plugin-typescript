@@ -121,11 +121,11 @@ class TypeScriptPlugin {
         return __awaiter(this, void 0, void 0, function* () {
             // include node_modules into build
             if (!fs.existsSync(path.resolve(path.join(buildFolder, 'node_modules')))) {
-                fs.symlinkSync(path.resolve('node_modules'), path.resolve(path.join(buildFolder, 'node_modules')));
+                fs.symlinkSync(path.resolve('node_modules'), path.resolve(path.join(buildFolder, 'node_modules')), 'dir');
             }
             // include package.json into build so Serverless can exlcude devDeps during packaging
             if (!fs.existsSync(path.resolve(path.join(buildFolder, 'package.json')))) {
-                fs.symlinkSync(path.resolve('package.json'), path.resolve(path.join(buildFolder, 'package.json')));
+                fs.symlinkSync(path.resolve('package.json'), path.resolve(path.join(buildFolder, 'package.json')), 'file');
             }
             // include any "extras" from the "include" section
             if (this.serverless.service.package.include && this.serverless.service.package.include.length > 0) {
